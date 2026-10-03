@@ -107,12 +107,6 @@
             }
         ],
         "rule_set": [],
-        "geosite": {
-            "download_detour": "DIRECT"
-        },
-        "geoip": {
-            "download_detour": "DIRECT"
-        },
         "default_domain_resolver": "local",
         "auto_detect_interface": true
     }

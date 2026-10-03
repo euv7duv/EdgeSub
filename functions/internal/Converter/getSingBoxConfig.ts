@@ -42,6 +42,13 @@ export async function getSingBoxConfig (
         }
     }).filter(i => !!i);
     // append proxies
+    // 显式定义规则集下载用的 HTTP 客户端(sing-box 1.14 起 download_detour 已弃用)
+    SingBoxConfig.http_clients = SingBoxConfig.http_clients || [
+        {
+            tag: "direct-http",
+            detour: "DIRECT"
+        }
+    ];
     SingBoxConfig.outbounds = SingBoxConfig.outbounds || [];
     SingBoxConfig.outbounds = [
         ...SingBoxConfig.outbounds, 
@@ -166,7 +173,7 @@ export async function getSingBoxConfig (
                 tag: RuleProviderID,
                 format: "source",
                 url: RuleProviderURL,
-                download_detour: "DIRECT"
+                http_client: "direct-http"
             })
         }
     }
@@ -213,7 +220,7 @@ export async function getSingBoxConfig (
                 // append rule-set
                 SingBoxConfig.route.rule_set.push({
                     ...headlessRuleSet,
-                    download_detour: "DIRECT"
+                    http_client: "direct-http"
                 })
             }
             continue;
