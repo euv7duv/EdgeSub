@@ -5,4 +5,4 @@ pages_build_output_dir = "dist"
 
 [[kv_namespaces]]
 binding = "EdgeSubDB"
-id = "9feac058c10347a6b0dc72909c569877"
+id = "f977f2665ff6402e847cadea218e0883"
