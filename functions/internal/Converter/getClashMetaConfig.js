@@ -6,7 +6,7 @@ const BasicConfig = {
     isUDP: true,
     isSSUoT: false,
     isInsecure: true,
-    RuleProvider: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/rules/ACL4SSR/ACL4SSR_Online_Full.ini",
+    RuleProvider: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/rules/ACL4SSR/ACL4SSR_Online.ini",
     RuleProvidersProxy: false,
     BaseConfig: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/public/basic-config/mihomo.yaml",
     // BaseConfig: "https://raw.githubusercontent.com/kobe-koto/EdgeSub/main/public/basic-config/mihomo.yaml",
