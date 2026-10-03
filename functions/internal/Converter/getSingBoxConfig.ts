@@ -9,9 +9,9 @@ const BasicConfig = {
     isUDP: true,
     isSSUoT: true,
     isInsecure: true,
-    RuleProvider: "https://raw.githubusercontent.com/kobe-koto/EdgeSub/main/public/minimal_remote_rules.ini",
+    RuleProvider: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/public/minimal_remote_rules.ini",
     RuleProvidersProxy: true, // this is required
-    BaseConfig: "https://raw.githubusercontent.com/kobe-koto/EdgeSub/main/public/basic-config/sing-box.jsonc",
+    BaseConfig: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/public/basic-config/sing-box.jsonc",
     isForcedRefresh: false
 }
 

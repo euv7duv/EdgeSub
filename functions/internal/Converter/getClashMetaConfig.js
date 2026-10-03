@@ -6,9 +6,9 @@ const BasicConfig = {
     isUDP: true,
     isSSUoT: false,
     isInsecure: true,
-    RuleProvider: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini",
+    RuleProvider: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/rules/ACL4SSR/ACL4SSR_Online_Full.ini",
     RuleProvidersProxy: false,
-    BaseConfig: "https://raw.githubusercontent.com/d5f6y7/EdgeSub/main/public/basic-config/mihomo.yaml",
+    BaseConfig: "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/public/basic-config/mihomo.yaml",
     // BaseConfig: "https://raw.githubusercontent.com/kobe-koto/EdgeSub/main/public/basic-config/mihomo.yaml",
     isForcedRefresh: false
 }
