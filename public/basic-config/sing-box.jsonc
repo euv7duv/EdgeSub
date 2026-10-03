@@ -28,6 +28,10 @@
         ],
         "rules": [
             {
+                "action": "evaluate",
+                "server": "hosts"
+            },
+            {
                 "ip_accept_any": true,
                 "match_response": true,
                 "action": "route",
