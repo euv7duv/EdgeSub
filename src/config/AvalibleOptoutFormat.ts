@@ -9,11 +9,6 @@ export type EndpointPrototype = {
 
 const AvalibleEndpoints: EndpointPrototype[] = [
     {
-        key: "Sing Box",
-        value: "/sub/sing-box",
-        ExtendConfig: ["RuleProvider", "RuleProviderUserspec", "RuleProvidersProxy", "BaseConfig", "isUDP", "isSSUoT", "ForcedWS0RTT"]
-    },
-    {
         key: "Clash Meta",
         value: "/sub/clash-meta",
         ExtendConfig: ["RuleProvider", "RuleProviderUserspec", "RuleProvidersProxy", "BaseConfig", "isUDP", "isSSUoT", "ForcedWS0RTT"]
