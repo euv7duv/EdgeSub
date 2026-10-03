@@ -35,7 +35,7 @@ export function MetaToSingLogicalRule (type: string, payload: string, EdgeSubIns
             let { 
                 headlessRule: RecrusivlyHeadlessRule, 
                 headlessRuleSet: RecrusivlyHeadlessRuleSet 
-            } = MetaToSingLogicalRule(itemType, itemBreakdown.slice(1).join(","), EdgeSubInstanceBaseURL);
+            } = MetaToSingLogicalRule(itemType, itemBreakdown.slice(1).join(","), EdgeSubInstanceBaseURL, AccessToken);
 
             RecrusivlyHeadlessRuleSet = RecrusivlyHeadlessRuleSet.filter(i => !!i && !ruleSets.find(t => t.tag === i.tag));
             ruleSets.push(...RecrusivlyHeadlessRuleSet);

@@ -77,6 +77,7 @@ export async function getClashMetaConfig (
                 RuleProviderURLObject.pathname = "/ruleset/proxy"
                 RuleProviderURLObject.search = ""
                 RuleProviderURLObject.searchParams.append("target", RuleProviderPayload)
+                if (Config.AccessToken) { RuleProviderURLObject.searchParams.append("token", Config.AccessToken); }
                 RuleProviderURL = RuleProviderURLObject.toString()
             } else {
                 RuleProviderURL = RuleProviderPayload;

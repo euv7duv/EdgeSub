@@ -234,7 +234,7 @@ export async function getSingBoxConfig (
 
         // handle AND | OR Logic rules
         if (type === "and" || type === "or") {
-            let { headlessRule, headlessRuleSet } = MetaToSingLogicalRule(type, payload, Config.RuleProvidersProxy);
+            let { headlessRule, headlessRuleSet } = MetaToSingLogicalRule(type, payload, Config.RuleProvidersProxy, Config.AccessToken);
             headlessRuleSet = headlessRuleSet.filter(i => !!i && !SingBoxConfig.route.rule_set.find(t => t.tag === i.tag));
 
             SingBoxConfig.route.rule_set.push(...headlessRuleSet);

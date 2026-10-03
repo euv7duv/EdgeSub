@@ -1,7 +1,7 @@
 async function AccessControl (context) {
     const url = new URL(context.request.url);
     const token = context.env.ACCESS_TOKEN;
-    const protectedPath = url.pathname.startsWith("/sub/") || url.pathname.startsWith("/short/");
+    const protectedPath = url.pathname.startsWith("/sub/") || url.pathname.startsWith("/short/") || url.pathname.startsWith("/ruleset/");
     if (token && protectedPath && url.searchParams.get("token") !== token) {
         return new Response("Not Found", { status: 404 });
     }

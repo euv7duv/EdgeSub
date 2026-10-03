@@ -23,6 +23,7 @@ export async function onRequest (context) {
             RuleProvider: URLObject.searchParams.get("remote_config") || "__DEFAULT",
             RuleProvidersProxy: URLObject.searchParams.get("rule_providers_proxy"),
             BaseConfig: URLObject.searchParams.get("BaseConfig"),
+            AccessToken: URLObject.searchParams.get("token"),
             isForcedRefresh: URLObject.searchParams.get("forced_refresh") === "true" ? true : false
         }
     )

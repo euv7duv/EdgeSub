@@ -32,6 +32,7 @@ export function transformGeoRef (
             RuleSetURLObject.pathname = "/ruleset/proxy";
             RuleSetURLObject.search = "";
             RuleSetURLObject.searchParams.append("target", `https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/${RuleSetTag}.srs`);
+            if (AccessToken) { RuleSetURLObject.searchParams.append("token", AccessToken); }
     const RuleSetURL = RuleSetURLObject.toString();
 
     return {
