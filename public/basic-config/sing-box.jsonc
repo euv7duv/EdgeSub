@@ -29,6 +29,7 @@
         "rules": [
             {
                 "ip_accept_any": true,
+                "match_response": true,
                 "action": "route",
                 "server": "hosts"
             },
