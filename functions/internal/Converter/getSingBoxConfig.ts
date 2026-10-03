@@ -67,6 +67,7 @@ export async function getSingBoxConfig (
             ClashWebUIURLObject.pathname = "/ruleset/proxy";
             ClashWebUIURLObject.search = "";
             ClashWebUIURLObject.searchParams.append("target", SingBoxConfig.experimental.clash_api.external_ui_download_url);
+            if (Config.AccessToken) { ClashWebUIURLObject.searchParams.append("token", Config.AccessToken); }
         SingBoxConfig.experimental.clash_api.external_ui_download_url = ClashWebUIURLObject.toString();
     }
 
@@ -158,6 +159,7 @@ export async function getSingBoxConfig (
                 RuleProviderURLObject.pathname = "/ruleset/preprocessor/sing-box"
                 RuleProviderURLObject.search = ""
                 RuleProviderURLObject.searchParams.append("target", RuleProviderPayload)
+            if (Config.AccessToken) { RuleProviderURLObject.searchParams.append("token", Config.AccessToken); }
             const RuleProviderURL = RuleProviderURLObject.toString()
             SingBoxConfig.route.rule_set.push({
                 type: "remote",
@@ -198,7 +200,7 @@ export async function getSingBoxConfig (
 
         // handle GEOIP and GEOSITE
         if (type === "geoip" || type === "geosite") {
-            const { headlessRule, headlessRuleSet } = transformGeoRef(type, payload, Config.RuleProvidersProxy);
+            const { headlessRule, headlessRuleSet } = transformGeoRef(type, payload, Config.RuleProvidersProxy, Config.AccessToken);
 
             SingBoxConfig.route.rules.push({
                 ...headlessRule,

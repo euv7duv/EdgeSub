@@ -9,7 +9,8 @@ export type headlessRuleSet = {
 export function transformGeoRef (
     type: string, 
     payload: string, 
-    EdgeSubInstanceBaseURL
+    EdgeSubInstanceBaseURL,
+    AccessToken?: string
 ): { 
     headlessRule: any, 
     headlessRuleSet: headlessRuleSet | null

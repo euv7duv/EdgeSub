@@ -13,7 +13,7 @@ import type { headlessRuleSet } from "../ruleset/transformGeoRef";
  * @param type Sing rule type 
  * @returns Sing Headless rule
  */
-export function MetaToSingLogicalRule (type: string, payload: string, EdgeSubInstanceBaseURL): { headlessRule: any, headlessRuleSet: headlessRuleSet[] } {
+export function MetaToSingLogicalRule (type: string, payload: string, EdgeSubInstanceBaseURL, AccessToken?: string): { headlessRule: any, headlessRuleSet: headlessRuleSet[] } {
     // console.log(payload)
     const payloads = payload.replace(/(^\(|\)$)/g, "");
     // console.log(payloads)
@@ -24,7 +24,7 @@ export function MetaToSingLogicalRule (type: string, payload: string, EdgeSubIns
         const itemPayload = itemBreakdown[1];
         // handle GEOIP and GEOSITE
         if (itemType === "geoip" || itemType === "geosite") {
-            const { headlessRule, headlessRuleSet } = transformGeoRef(itemType, itemPayload, EdgeSubInstanceBaseURL);
+            const { headlessRule, headlessRuleSet } = transformGeoRef(itemType, itemPayload, EdgeSubInstanceBaseURL, AccessToken);
             // if we cant find rule set with same tag (ie append before), 
             if (headlessRuleSet && !(ruleSets.find(i => i.tag === headlessRuleSet.tag))) { 
                 ruleSets.push(headlessRuleSet);
@@ -35,7 +35,7 @@ export function MetaToSingLogicalRule (type: string, payload: string, EdgeSubIns
             let { 
                 headlessRule: RecrusivlyHeadlessRule, 
                 headlessRuleSet: RecrusivlyHeadlessRuleSet 
-            } = MetaToSingLogicalRule(itemType, itemBreakdown.slice(1).join(","), EdgeSubInstanceBaseURL, AccessToken);
+            } = MetaToSingLogicalRule(itemType, itemBreakdown.slice(1).join(","), EdgeSubInstanceBaseURL);
 
             RecrusivlyHeadlessRuleSet = RecrusivlyHeadlessRuleSet.filter(i => !!i && !ruleSets.find(t => t.tag === i.tag));
             ruleSets.push(...RecrusivlyHeadlessRuleSet);
