@@ -32,7 +32,10 @@ export function transformGeoRef (
         let RuleSetURLObject = new URL(EdgeSubInstanceBaseURL);
             RuleSetURLObject.pathname = "/ruleset/proxy";
             RuleSetURLObject.search = "";
-            RuleSetURLObject.searchParams.append("target", `https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/${RuleSetTag}.srs`);
+            const geoRepoBase = type === "geosite"
+                ? "https://raw.githubusercontent.com/euv7duv/EdgeSub/main/rules/sing-geosite"
+                : "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set";
+            RuleSetURLObject.searchParams.append("target", `${geoRepoBase}/${RuleSetTag}.srs`);
             if (AccessToken) { RuleSetURLObject.searchParams.append("token", AccessToken); }
     const RuleSetURL = RuleSetURLObject.toString();
 
