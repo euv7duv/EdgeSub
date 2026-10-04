@@ -191,6 +191,21 @@ export class ShareLinkParser {
         }
         return TROJAN;
     }
+    anytls (URI) {
+        let URIObject = new URL(URI);
+        // password 可能在 username(无冒号) 或 password(有冒号) 位置
+        let password = URIObject.password || decodeURIComponent(URIObject.username);
+
+        const ANYTLS = {
+            __Type: "anytls",
+            __Remark: decodeURIComponent(URIObject.hash.replace(/^#/, "")) || URIObject.host,
+            Auth: password,
+            Hostname: URIObject.hostname,
+            Port: parseInt(URIObject.port),
+            Query: __searchParamsMapper(URIObject.searchParams)
+        }
+        return ANYTLS;
+    }
 }
 
 function __searchParamsMapper (searchParams) {
