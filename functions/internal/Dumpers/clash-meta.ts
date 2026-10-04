@@ -255,7 +255,7 @@ export default class Dumper {
             password: ANYTLS.Auth,
             udp: this.config.UDP
         };
-        if (ANYTLS.Query.sni) cfg.sni = ANYTLS.Query.sni;
+        cfg.sni = ANYTLS.Query.sni || ANYTLS.Hostname;
         cfg["client-fingerprint"] = ANYTLS.Query.fp || this.config.ClientFingerprint;
         const rc = __genRealityConfig(ANYTLS);
         if (rc) cfg["reality-opts"] = rc;
