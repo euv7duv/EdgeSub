@@ -136,7 +136,7 @@ export default class Dumper {
             "xhttp-opts": __genTransportXHTTP(VLESS),
 
             udp: this.config.UDP,
-            "skip-cert-verify": this.config.SkipCertVerify,
+            "skip-cert-verify": (VLESS.Query.insecure === "1" || VLESS.Query.allowInsecure === "1") ? true : ((VLESS.Query.insecure === "0" || VLESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
         }
     }
     vmess (VMESS) {
@@ -170,7 +170,7 @@ export default class Dumper {
             "h2-opts": __genTransportH2(VMESS),
             "http-opts": __genTransportHTTP(VMESS),
 
-            "skip-cert-verify": this.config.SkipCertVerify,
+"skip-cert-verify": "skip-cert-verify": (VMESS.Query.insecure === "1" || VMESS.Query.allowInsecure === "1") ? true : ((VMESS.Query.insecure === "0" || VMESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
@@ -200,7 +200,7 @@ export default class Dumper {
             "http-opts": __genTransportHTTP(VMESS),
             "h2-opts": __genTransportH2(VMESS),
 
-            "skip-cert-verify": this.config.SkipCertVerify,
+            "skip-cert-verify": "skip-cert-verify": (VMESS.Query.insecure === "1" || VMESS.Query.allowInsecure === "1") ? true : ((VMESS.Query.insecure === "0" || VMESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
@@ -245,7 +245,7 @@ export default class Dumper {
             "client-fingerprint": TROJAN.Query.fp,
 
             udp: this.config.UDP,
-            "skip-cert-verify": this.config.SkipCertVerify,
+            "skip-cert-verify": (TROJAN.Query.insecure === "1" || TROJAN.Query.allowInsecure === "1") ? true : ((TROJAN.Query.insecure === "0" || TROJAN.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
         }
     }
     anytls(ANYTLS) {
