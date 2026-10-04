@@ -130,7 +130,11 @@ async function ParseSubData (SubURL: SubURL, EdgeSubDB, RequestHeaders) : Promis
 
                 // try decode as base64 endoded share-links
                 try {
-                    let decodedData = atob(res.data.trim());
+                    // atob 返回 Latin-1 字符串, 中文等多字节字符会乱码并可能带出控制字符;
+                    // 用 TextDecoder 按 UTF-8 还原
+                    const _b64bin = atob(res.data.trim());
+                    const _b64bytes = Uint8Array.from(_b64bin, ch => ch.charCodeAt(0));
+                    let decodedData = new TextDecoder().decode(_b64bytes);
                     if (!decodedData.match(/\:\/\//gi)) {
                         throw "seems like base64 decoded data malformed"
                     }
