@@ -132,6 +132,7 @@ export default class Dumper {
             "grpc-opts": __genTransportGRPC(VLESS),
             "h2-opts": __genTransportH2(VLESS),
             "http-opts": __genTransportHTTP(VLESS),
+            "xhttp-opts": __genTransportXHTTP(VLESS),
 
             udp: this.config.UDP,
             "skip-cert-verify": this.config.SkipCertVerify,
@@ -313,6 +314,16 @@ function __genTransportHTTP (Obj) : TransportHTTP | undefined {
         headers: host ? { host } : undefined,
     } : undefined;
 }
+function __genTransportXHTTP (Obj) {
+    const PassedTransportType = Obj.Query.type;
+    if (PassedTransportType !== "xhttp" && PassedTransportType !== "splithttp") return undefined;
+    const opts = {};
+    if (Obj.Query.path) opts.path = Obj.Query.path;
+    if (Obj.Query.host) opts.host = Obj.Query.host;
+    if (Obj.Query.mode) opts.mode = Obj.Query.mode;
+    return opts;
+}
+
 function __genTransportH2 (Obj) : TransportH2 | undefined {
     const PassedTransportType = Obj.Query.obfs || Obj.Query.net || Obj.Query.type;
     return PassedTransportType === "h2" ? {
