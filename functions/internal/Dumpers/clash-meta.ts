@@ -118,6 +118,7 @@ export default class Dumper {
             port: VLESS.Port,
             uuid: VLESS.Auth,
             flow: VLESS.Query.flow,
+            encryption: VLESS.Query.encryption,
             "packet-encoding": VLESS.Query.packetEncoding,
             tls: !!VLESS.Query.sni,
             servername: VLESS.Query.sni,
