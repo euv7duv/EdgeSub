@@ -246,6 +246,7 @@ export default class Dumper {
             "skip-cert-verify": this.config.SkipCertVerify,
         }
     }
+    // anytls support
     anytls (ANYTLS) {
         return {
             name: ANYTLS.__Remark,
