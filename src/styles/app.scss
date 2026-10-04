@@ -1,2 +1,28 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "pornhub";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: #000000;
+  --color-base-200: #0d0d0d;
+  --color-base-300: #1a1a1a;
+  --color-base-content: #ffffff;
+  --color-primary: #ff9900;
+  --color-primary-content: #000000;
+  --color-secondary: #ff9900;
+  --color-secondary-content: #000000;
+  --color-accent: #ff9900;
+  --color-accent-content: #000000;
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #ffffff;
+  --color-info: #ffffff;
+  --color-info-content: #000000;
+  --color-success: #00c853;
+  --color-warning: #ff9900;
+  --color-error: #ff3333;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+}
