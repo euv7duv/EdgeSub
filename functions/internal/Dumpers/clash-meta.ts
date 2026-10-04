@@ -252,7 +252,8 @@ export default class Dumper {
 function __genRealityConfig (Obj) : RealityConfig | undefined {
     return Obj.Query.security === "reality" ? {
         "public-key": Obj.Query.pbk ? Obj.Query.pbk : undefined,
-        "short-id": Obj.Query.sid ? Obj.Query.sid : undefined
+        "short-id": Obj.Query.sid ? Obj.Query.sid : undefined,
+        "spider-x": Obj.Query.spx ? Obj.Query.spx : undefined
     } : undefined
 }
 

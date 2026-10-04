@@ -60,4 +60,5 @@ export type TransportWS = {
 export type RealityConfig = {
     "public-key"?: string;
     "short-id"?: string;
+    "spider-x"?: string;
 }
