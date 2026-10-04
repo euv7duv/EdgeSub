@@ -84,7 +84,7 @@ export default class Dumper {
             obfs: hy2Object.Query.obfs,
             "obfs-password": hy2Object.Query["obfs-password"],
             "client-fingerprint": this.config.ClientFingerprint,
-            "skip-cert-verify": (hy2Object.Query.insecure === "1" || hy2Object.Query.allowInsecure === "1") ? true : ((hy2Object.Query.insecure === "0" || hy2Object.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+            "skip-cert-verify": __insecureToSkipVerify(hy2Object.Query, this.config.SkipCertVerify),
             udp: this.config.UDP,
         }
     }
@@ -102,7 +102,7 @@ export default class Dumper {
             "disable-sni": !!parseInt(TUIC.Query.disable_sni),
             "udp-relay-mode": TUIC.Query.udp_relay_mode,
             "congestion-controller": TUIC.Query.congestion_control,
-            "skip-cert-verify": (TUIC.Query.insecure === "1" || TUIC.Query.allowInsecure === "1") ? true : ((TUIC.Query.insecure === "0" || TUIC.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+            "skip-cert-verify": __insecureToSkipVerify(TUIC.Query, this.config.SkipCertVerify),
             sni: TUIC.Query.sni,
             // max-udp-relay-packet-size: 1500,
             // fast-open: true,
@@ -136,7 +136,7 @@ export default class Dumper {
             "xhttp-opts": __genTransportXHTTP(VLESS),
 
             udp: this.config.UDP,
-            "skip-cert-verify": (VLESS.Query.insecure === "1" || VLESS.Query.allowInsecure === "1") ? true : ((VLESS.Query.insecure === "0" || VLESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+            "skip-cert-verify": __insecureToSkipVerify(VLESS.Query, this.config.SkipCertVerify),
         }
     }
     vmess (VMESS) {
@@ -170,7 +170,7 @@ export default class Dumper {
             "h2-opts": __genTransportH2(VMESS),
             "http-opts": __genTransportHTTP(VMESS),
 
-"skip-cert-verify": "skip-cert-verify": (VMESS.Query.insecure === "1" || VMESS.Query.allowInsecure === "1") ? true : ((VMESS.Query.insecure === "0" || VMESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+"skip-cert-verify": "skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
@@ -200,7 +200,7 @@ export default class Dumper {
             "http-opts": __genTransportHTTP(VMESS),
             "h2-opts": __genTransportH2(VMESS),
 
-            "skip-cert-verify": "skip-cert-verify": (VMESS.Query.insecure === "1" || VMESS.Query.allowInsecure === "1") ? true : ((VMESS.Query.insecure === "0" || VMESS.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+            "skip-cert-verify": "skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
@@ -245,7 +245,7 @@ export default class Dumper {
             "client-fingerprint": TROJAN.Query.fp,
 
             udp: this.config.UDP,
-            "skip-cert-verify": (TROJAN.Query.insecure === "1" || TROJAN.Query.allowInsecure === "1") ? true : ((TROJAN.Query.insecure === "0" || TROJAN.Query.allowInsecure === "0") ? false : this.config.SkipCertVerify),
+            "skip-cert-verify": __insecureToSkipVerify(TROJAN.Query, this.config.SkipCertVerify),
         }
     }
     anytls(ANYTLS) {
@@ -261,11 +261,17 @@ export default class Dumper {
         cfg["client-fingerprint"] = ANYTLS.Query.fp || this.config.ClientFingerprint;
         const rc = __genRealityConfig(ANYTLS);
         if (rc) cfg["reality-opts"] = rc;
-        if (ANYTLS.Query.insecure === "1") cfg["skip-cert-verify"] = true;
-        else if (ANYTLS.Query.insecure === "0") cfg["skip-cert-verify"] = false;
-        else cfg["skip-cert-verify"] = this.config.SkipCertVerify;
+        cfg["skip-cert-verify"] = __insecureToSkipVerify(ANYTLS.Query, this.config.SkipCertVerify);
         return cfg;
     }
+}
+
+
+function __insecureToSkipVerify(Query, Default) {
+    const v = Query.insecure || Query.allowInsecure;
+    if (v === "1") return true;
+    if (v === "0") return false;
+    return Default;
 }
 
 
