@@ -261,7 +261,15 @@ export default class Dumper {
         cfg["client-fingerprint"] = ANYTLS.Query.fp || this.config.ClientFingerprint;
         const rc = __genRealityConfig(ANYTLS);
         if (rc) cfg["reality-opts"] = rc;
-        cfg["skip-cert-verify"] = __insecureToSkipVerify(ANYTLS.Query, this.config.SkipCertVerify);
+        // REALITY 自带公钥验证, 不强制 skip-cert-verify
+        if (ANYTLS.Query.security === "reality") {
+            const v = ANYTLS.Query.insecure || ANYTLS.Query.allowInsecure;
+            if (v === "1") cfg["skip-cert-verify"] = true;
+            else if (v === "0") cfg["skip-cert-verify"] = false;
+            // 否则不设置, 让 Mihomo 用默认行为
+        } else {
+            cfg["skip-cert-verify"] = __insecureToSkipVerify(ANYTLS.Query, this.config.SkipCertVerify);
+        }
         return cfg;
     }
 }
