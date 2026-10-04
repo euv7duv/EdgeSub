@@ -38,3 +38,8 @@
     --depth: 1;
     --noise: 0;
 }
+
+/* 表单标签橙色 */
+.fieldset-legend {
+    color: var(--color-primary);
+}
