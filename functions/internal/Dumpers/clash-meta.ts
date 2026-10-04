@@ -170,7 +170,7 @@ export default class Dumper {
             "h2-opts": __genTransportH2(VMESS),
             "http-opts": __genTransportHTTP(VMESS),
 
-"skip-cert-verify": "skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
+"skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
@@ -200,7 +200,7 @@ export default class Dumper {
             "http-opts": __genTransportHTTP(VMESS),
             "h2-opts": __genTransportH2(VMESS),
 
-            "skip-cert-verify": "skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
+            "skip-cert-verify": __insecureToSkipVerify(VMESS.Query, this.config.SkipCertVerify),
             udp: this.config.UDP,
 
             // packet-encoding
